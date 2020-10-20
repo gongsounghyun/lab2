@@ -2,15 +2,15 @@
 #include <assert.h>
 #include <stdlib.h>
 
-my_assert(int expression){
-    if(expression==NULL){
-	printf("%s:%d:%s failed 중지됨\n",__FILE__,__LINE__,__func__);
+void my_assert(int expression, char* file_name, int error_name, const char* function){
+    if(expression==0){
+	printf("%s:%d:%s failed 중지됨\n",file_name, error_name, function);
 	exit(1);	
     }
 }
 
 void foo(int num){
-    my_assert( ((num >= 0) && (num <= 100)) );
+    my_assert( ((num >= 0) && (num <= 100)), __FILE__, __LINE__, __func__);
     printf("foo: num = %d\n", num);
 }
 
